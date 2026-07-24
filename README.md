@@ -51,9 +51,3 @@ The core of this project is an **AI-driven Early Warning System**. By analyzing 
 *   Node.js & npm installed
 *   Python 3.8+ installed (for the ML environment)
 *   Local or cloud SQL database running
-
-### Installation
-
-1. **Clone the repo**
-   ```sh
-   git clone [https://github.com/your-username/namma-chhatra.git](https://github.com/your-username/namma-chhatra.git)
