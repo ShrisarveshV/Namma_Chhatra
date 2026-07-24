@@ -1,8 +1,5 @@
 # 🎓 Namma Chhatra: AI-Powered Early Warning System
 
-![Namma Chhatra Dashboard Preview](https://via.placeholder.com/1000x500.png?text=Namma+Chhatra+Dashboard) 
-*(Note: Replace with an actual screenshot of your dashboard)*
-
 ## 📖 About The Project
 
 **Namma Chhatra** ("Learning Never Exhausts The Mind") is a modern, data-driven school management platform built to bridge the gap between educational administration and proactive student intervention. 
