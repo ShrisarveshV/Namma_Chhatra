@@ -711,7 +711,7 @@ def get_high_risk_students(
     if section_id:
         q = q.filter(models.Student.section_id == section_id)
 
-    students = q.order_by(models.DropoutPrediction.risk_score.desc()).all()
+    students = q.order_by(models.Student.dropout_risk_score.desc()).all()
     results = []
     for s in students:
         cls = db.query(models.ClassModel).filter(models.ClassModel.id == s.class_id).first()

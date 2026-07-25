@@ -3,11 +3,18 @@ import { Bell, LogOut, User, Check } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import logo from '../assets/logo-removebg-preview.png';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
+  const { t, i18n } = useTranslation();
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'hi' : 'en';
+    i18n.changeLanguage(newLang);
+  };
 
   useEffect(() => {
     if (user) {
@@ -53,12 +60,20 @@ export default function Navbar() {
         <div>
           <h1 className="font-bold text-lg text-slate-800 tracking-tight leading-none">Namma Chhatra</h1>
           <div className="hidden md:flex flex-col text-xs text-slate-500 font-medium tracking-wide">
-            Learning Never Exhausts The Mind
+            {t('navbar.tagline', 'Learning Never Exhausts The Mind')}
           </div>
         </div>
       </div>
       
       <div className="flex items-center gap-4 sm:gap-6 relative">
+        <button
+          onClick={toggleLanguage}
+          className="relative px-3 py-1 text-sm font-bold text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all border border-slate-200"
+          title="Toggle Language"
+        >
+          {i18n.language === 'en' ? 'A/अ' : 'अ/A'}
+        </button>
+
         <button 
           onClick={() => setShowNotifications(!showNotifications)}
           className="relative p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-full transition-all duration-300"
@@ -75,16 +90,16 @@ export default function Navbar() {
         {showNotifications && (
           <div className="absolute top-full right-0 mt-2 w-80 bg-white border border-slate-100 shadow-lg z-50 rounded-2xl overflow-hidden">
             <div className="p-3 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-              <h3 className="font-bold text-sm text-slate-800">Notifications</h3>
+              <h3 className="font-bold text-sm text-slate-800">{t('navbar.notifications', 'Notifications')}</h3>
               {unreadCount > 0 && (
                 <button onClick={markAllAsRead} className="text-xs text-blue-600 hover:underline font-semibold">
-                  Mark all read
+                  {t('navbar.mark_all_read', 'Mark all read')}
                 </button>
               )}
             </div>
             <div className="max-h-80 overflow-y-auto">
               {notifications.length === 0 ? (
-                <div className="p-6 text-center text-sm text-slate-500">No notifications</div>
+                <div className="p-6 text-center text-sm text-slate-500">{t('navbar.no_notifications', 'No notifications')}</div>
               ) : (
                 notifications.map((notif) => (
                   <div key={notif.id} className={`p-4 border-b border-slate-50 last:border-b-0 transition-colors ${notif.is_read === 0 ? 'bg-blue-50/50' : 'hover:bg-slate-50'}`}>
@@ -108,7 +123,7 @@ export default function Navbar() {
         
         <div className="flex items-center gap-3 pl-4 sm:pl-6 border-l border-slate-200">
           <div className="hidden sm:block text-right">
-            <p className="text-sm font-bold text-slate-800">Welcome, {user?.full_name || 'User'}</p>
+            <p className="text-sm font-bold text-slate-800">{t('navbar.welcome', 'Welcome')}, {user?.full_name || 'User'}</p>
           </div>
           <div className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
             <User className="w-5 h-5" />
@@ -116,7 +131,7 @@ export default function Navbar() {
           <button 
             onClick={logout}
             className="ml-2 p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-full transition-all duration-300"
-            title="Sign Out"
+            title={t('navbar.sign_out', 'Sign Out')}
           >
             <LogOut className="w-5 h-5" />
           </button>

@@ -148,7 +148,6 @@ export default function ClassesSections() {
         {/* ── Classes Panel ── */}
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl">
           <div className="px-5 py-4 border-b border-slate-200 flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-blue-500" />
             <h2 className="font-bold text-slate-800">Classes ({classes.length})</h2>
           </div>
           <div className="p-5 space-y-4">
@@ -186,7 +185,6 @@ export default function ClassesSections() {
         {/* ── Sections Panel ── */}
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl">
           <div className="px-5 py-4 border-b border-slate-200 flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-indigo-500" />
             <h2 className="font-bold text-slate-800">Sections ({sections.length})</h2>
           </div>
           <div className="p-5 space-y-4">

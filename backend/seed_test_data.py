@@ -28,7 +28,8 @@ def run_seed():
             db.refresh(sec)
 
         # 2. Clear existing dummy students
-        dummy_rolls = ["STU-HIGH-01", "STU-MED-01", "STU-LOW-01", "STU-HIGH-02", "STU-HIGH-03", "STU-MED-02", "STU-MED-03"]
+        dummy_rolls = ["STU-HIGH-01", "STU-MED-01", "STU-LOW-01", "STU-HIGH-02", "STU-HIGH-03", "STU-MED-02", "STU-MED-03",
+                       "STU-DROP-01", "STU-DROP-02", "STU-DROP-03", "STU-DROP-04", "STU-DROP-05"]
         existing_students = db.query(models.Student).filter(models.Student.roll_number.in_(dummy_rolls)).all()
         for s in existing_students:
             # delete attendance records if any
@@ -125,6 +126,66 @@ def run_seed():
                 "income_bracket": "3",
                 "grade_drop_pct": 2.0,
                 "att_pct": 79.0
+            },
+            {
+                "roll_number": "STU-DROP-01",
+                "student_name": "Rahul Verma",
+                "gender": "Male",
+                "dob": date(2008, 2, 18),
+                "class_id": cls.id,
+                "section_id": sec.id,
+                "commute_distance_km": 25.0,
+                "income_bracket": "1",
+                "grade_drop_pct": 25.0,
+                "att_pct": 35.0
+            },
+            {
+                "roll_number": "STU-DROP-02",
+                "student_name": "Sita Kumari",
+                "gender": "Female",
+                "dob": date(2008, 7, 30),
+                "class_id": cls.id,
+                "section_id": sec.id,
+                "commute_distance_km": 22.0,
+                "income_bracket": "1",
+                "grade_drop_pct": 22.0,
+                "att_pct": 40.0
+            },
+            {
+                "roll_number": "STU-DROP-03",
+                "student_name": "Amit Das",
+                "gender": "Male",
+                "dob": date(2008, 3, 22),
+                "class_id": cls.id,
+                "section_id": sec.id,
+                "commute_distance_km": 18.0,
+                "income_bracket": "1",
+                "grade_drop_pct": 28.0,
+                "att_pct": 25.0
+            },
+            {
+                "roll_number": "STU-DROP-04",
+                "student_name": "Pooja Yadav",
+                "gender": "Female",
+                "dob": date(2008, 9, 14),
+                "class_id": cls.id,
+                "section_id": sec.id,
+                "commute_distance_km": 19.0,
+                "income_bracket": "2",
+                "grade_drop_pct": 20.0,
+                "att_pct": 42.0
+            },
+            {
+                "roll_number": "STU-DROP-05",
+                "student_name": "Manoj Tiwari",
+                "gender": "Male",
+                "dob": date(2008, 11, 29),
+                "class_id": cls.id,
+                "section_id": sec.id,
+                "commute_distance_km": 24.0,
+                "income_bracket": "1",
+                "grade_drop_pct": 30.0,
+                "att_pct": 20.0
             }
         ]
 
@@ -163,6 +224,21 @@ def run_seed():
             elif s.roll_number == "STU-MED-03":
                 s.dropout_risk_score = 45.0
                 s.dropout_risk_level = "Medium"
+            elif s.roll_number == "STU-DROP-01":
+                s.dropout_risk_score = 95.0
+                s.dropout_risk_level = "High"
+            elif s.roll_number == "STU-DROP-02":
+                s.dropout_risk_score = 92.0
+                s.dropout_risk_level = "High"
+            elif s.roll_number == "STU-DROP-03":
+                s.dropout_risk_score = 98.0
+                s.dropout_risk_level = "High"
+            elif s.roll_number == "STU-DROP-04":
+                s.dropout_risk_score = 90.0
+                s.dropout_risk_level = "High"
+            elif s.roll_number == "STU-DROP-05":
+                s.dropout_risk_score = 99.0
+                s.dropout_risk_level = "High"
             
             db.add(s)
             print(f"Prepared student {s.student_name} ({s.roll_number}) with risk level: {s.dropout_risk_level}")

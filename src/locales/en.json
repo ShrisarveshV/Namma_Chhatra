@@ -1,0 +1,116 @@
+{
+  "navbar": {
+    "tagline": "Learning Never Exhausts The Mind",
+    "notifications": "Notifications",
+    "mark_all_read": "Mark all read",
+    "no_notifications": "No notifications",
+    "welcome": "Welcome",
+    "sign_out": "Sign Out"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "mark_attendance": "Mark Attendance",
+    "attendance_records": "Attendance Records",
+    "student_management": "Student Management",
+    "high_risk": "High Risk Students",
+    "counseling_roster": "Counseling Roster",
+    "ai_analysis": "AI Analysis",
+    "attendance_graph": "Attendance Graph",
+    "notifications": "Notifications",
+    "students": "Students",
+    "teachers": "Teachers",
+    "classes": "Classes & Sections",
+    "attendance": "Attendance",
+    "analytics": "Analytics",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "headmaster": {
+    "errors": {
+      "fetch_failed": "Failed to fetch dashboard data.",
+      "batch_failed": "Batch evaluation failed.",
+      "export_failed": "Export failed. Please try again."
+    },
+    "loading": "Loading Dashboard Data...",
+    "retry": "Retry",
+    "kpi": {
+      "attendance_rate": "Attendance Rate",
+      "attendance_desc": "7-day average (all classes)",
+      "total_strength": "Total Strength",
+      "strength_desc": "Enrolled across all classes",
+      "active_teachers": "Active Teachers",
+      "teachers_desc": "All present today",
+      "critical_alerts": "Critical Red Alerts",
+      "alerts_desc": "Needs immediate action"
+    },
+    "risk": {
+      "high": "High Risk",
+      "medium": "Medium Risk",
+      "low": "Low Risk",
+      "safe": "Safe",
+      "percentage": "% of students"
+    },
+    "teachers_leave": {
+      "title": "Teachers on Leave",
+      "subtitle": "Recent leave records",
+      "empty": "No teachers on leave found.",
+      "col_id": "Teacher ID",
+      "col_name": "Teacher Name",
+      "col_date": "Date",
+      "col_type": "Leave Type",
+      "col_reason": "Reason"
+    },
+    "class_attendance": {
+      "title": "Class-wise Attendance Rates",
+      "subtitle": "(last 7 school days)",
+      "empty": "No data available",
+      "students": "Students"
+    },
+    "teacher_gate": {
+      "title": "Teacher Gate Check-In Status",
+      "empty": "No teacher data available",
+      "col_name": "Teacher Name",
+      "col_class": "Assigned Class / Section",
+      "col_time": "Check-In Time",
+      "col_status": "Status"
+    }
+  },
+  "teacher": {
+    "dashboard_title": "My Class Dashboard",
+    "errors": {
+      "fetch_failed": "Failed to fetch teacher dashboard data."
+    },
+    "loading": "Loading Dashboard...",
+    "retry": "Retry",
+    "filters": {
+      "all_classes": "All Classes",
+      "all_sections": "All Sections"
+    },
+    "kpi": {
+      "total_assigned": "Total Assigned",
+      "assigned_desc": "Students in your classes",
+      "present_today": "Present Today",
+      "present_desc": "Rate:",
+      "absent_today": "Absent Today",
+      "absent_desc": "Total absentees",
+      "high_risk": "High Risk",
+      "high_risk_desc": "Students needing attention"
+    },
+    "absent_table": {
+      "title": "Absent Today",
+      "subtitle": "Students from your assigned sections currently absent",
+      "empty": "No students are absent today.",
+      "col_roll": "Roll No",
+      "col_name": "Student Name",
+      "col_risk": "Risk Level",
+      "col_phone": "Parent Phone"
+    },
+    "high_risk_table": {
+      "title": "High Risk Students",
+      "subtitle": "Top priority students in your classes",
+      "empty": "No high-risk students found.",
+      "score": "Score",
+      "roll": "Roll"
+    }
+  }
+}

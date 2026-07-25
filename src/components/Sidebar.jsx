@@ -6,9 +6,11 @@ import {
 } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 
 export default function Sidebar({ role }) {
+  const { t } = useTranslation();
   const [unreadCount, setUnreadCount] = useState(0);
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -32,27 +34,27 @@ export default function Sidebar({ role }) {
 
   const navByRole = {
     TEACHER: [
-      { path: '/dashboard/overview',              label: 'Dashboard',           icon: LayoutDashboard },
-      { path: '/dashboard/mark-attendance',       label: 'Mark Attendance',     icon: ClipboardCheck },
-      { path: '/dashboard/attendance-management', label: "Attendance Records",  icon: CalendarCheck },
-      { path: '/dashboard/students',              label: 'Student Management',  icon: Users },
-      { path: '/dashboard/high-risk',             label: 'High Risk Students',  icon: ShieldAlert },
-      { path: '/dashboard/counseling',            label: 'Counseling Roster',   icon: HeartHandshake },
-      { path: '/dashboard/ai-analysis',           label: 'AI Analysis',         icon: Cpu },
-      { path: '/dashboard/analytics',             label: 'Attendance Graph',    icon: BarChart3 },
-      { path: '/dashboard/notifications',         label: 'Notifications',       icon: Bell, badge: true },
+      { path: '/dashboard/overview',              label: t('sidebar.dashboard', 'Dashboard'),           icon: LayoutDashboard },
+      { path: '/dashboard/mark-attendance',       label: t('sidebar.mark_attendance', 'Mark Attendance'),     icon: ClipboardCheck },
+      { path: '/dashboard/attendance-management', label: t('sidebar.attendance_records', 'Attendance Records'),  icon: CalendarCheck },
+      { path: '/dashboard/students',              label: t('sidebar.student_management', 'Student Management'),  icon: Users },
+      { path: '/dashboard/high-risk',             label: t('sidebar.high_risk', 'High Risk Students'),  icon: ShieldAlert },
+      { path: '/dashboard/counseling',            label: t('sidebar.counseling_roster', 'Counseling Roster'),   icon: HeartHandshake },
+      { path: '/dashboard/ai-analysis',           label: t('sidebar.ai_analysis', 'AI Analysis'),         icon: Cpu },
+      { path: '/dashboard/analytics',             label: t('sidebar.attendance_graph', 'Attendance Graph'),    icon: BarChart3 },
+      { path: '/dashboard/notifications',         label: t('sidebar.notifications', 'Notifications'),       icon: Bell, badge: true },
     ],
     HEADMASTER: [
-      { path: '/dashboard/overview',              label: 'Dashboard',            icon: LayoutDashboard },
-      { path: '/dashboard/students',              label: 'Students',             icon: Users },
-      { path: '/dashboard/teachers',              label: 'Teachers',             icon: UserCheck },
-      { path: '/dashboard/classes',               label: 'Classes & Sections',   icon: BookOpen },
-      { path: '/dashboard/attendance-management', label: 'Attendance',           icon: CalendarCheck },
-      { path: '/dashboard/analytics',             label: 'Analytics',            icon: BarChart3 },
-      { path: '/dashboard/high-risk',             label: 'High Risk Students',   icon: ShieldAlert },
-      { path: '/dashboard/counseling',            label: 'Counseling Roster',    icon: HeartHandshake },
-      { path: '/dashboard/ai-analysis',           label: 'AI Analysis',          icon: Cpu },
-      { path: '/dashboard/notifications',         label: 'Notifications',        icon: Bell, badge: true },
+      { path: '/dashboard/overview',              label: t('sidebar.dashboard', 'Dashboard'),            icon: LayoutDashboard },
+      { path: '/dashboard/students',              label: t('sidebar.students', 'Students'),             icon: Users },
+      { path: '/dashboard/teachers',              label: t('sidebar.teachers', 'Teachers'),             icon: UserCheck },
+      { path: '/dashboard/classes',               label: t('sidebar.classes', 'Classes & Sections'),   icon: BookOpen },
+      { path: '/dashboard/attendance-management', label: t('sidebar.attendance', 'Attendance'),           icon: CalendarCheck },
+      { path: '/dashboard/analytics',             label: t('sidebar.analytics', 'Analytics'),            icon: BarChart3 },
+      { path: '/dashboard/high-risk',             label: t('sidebar.high_risk', 'High Risk Students'),   icon: ShieldAlert },
+      { path: '/dashboard/counseling',            label: t('sidebar.counseling_roster', 'Counseling Roster'),    icon: HeartHandshake },
+      { path: '/dashboard/ai-analysis',           label: t('sidebar.ai_analysis', 'AI Analysis'),          icon: Cpu },
+      { path: '/dashboard/notifications',         label: t('sidebar.notifications', 'Notifications'),        icon: Bell, badge: true },
     ],
   };
 
@@ -107,7 +109,7 @@ export default function Sidebar({ role }) {
           {({ isActive }) => (
             <>
               <User className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
-              <span className="flex-1">Profile</span>
+              <span className="flex-1">{t('sidebar.profile', 'Profile')}</span>
             </>
           )}
         </NavLink>
@@ -116,7 +118,7 @@ export default function Sidebar({ role }) {
           className="w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-all duration-300"
         >
           <LogOut className="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-red-600" />
-          <span className="flex-1 text-left">Logout</span>
+          <span className="flex-1 text-left">{t('sidebar.logout', 'Logout')}</span>
         </button>
       </div>
     </aside>

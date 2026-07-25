@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { School, Users, ShieldAlert, RefreshCw, AlertCircle, TrendingUp, BookOpen, UserCheck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import RiskBadge from '../components/RiskBadge';
 import StudentDetailsModal from '../components/StudentDetailsModal';
 import SchoolOverviewBar from '../components/SchoolOverviewBar';
 import api from '../services/api';
 
 export default function HeadmasterDashboard() {
+  const { t } = useTranslation();
   const [stats, setStats] = useState(null);
   const [teacherLeaves, setTeacherLeaves] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,7 +49,7 @@ export default function HeadmasterDashboard() {
       if (classesList.length === 0) setClassesList(classesRes.data);
       if (sectionsList.length === 0) setSectionsList(sectionsRes.data);
     } catch (err) {
-      setError('Failed to fetch dashboard data.');
+      setError(t('headmaster.errors.fetch_failed', 'Failed to fetch dashboard data.'));
     } finally {
       setLoading(false);
     }
@@ -64,7 +66,7 @@ export default function HeadmasterDashboard() {
       await fetchMetrics(); // Refresh data to get new timestamps and scores
     } catch (err) {
       console.error('Failed to run batch evaluation:', err);
-      alert('Batch evaluation failed.');
+      alert(t('headmaster.errors.batch_failed', 'Batch evaluation failed.'));
     } finally {
       setIsEvaluating(false);
     }
@@ -97,14 +99,14 @@ export default function HeadmasterDashboard() {
       link.click();
       link.parentNode.removeChild(link);
     } catch (err) {
-      alert('Export failed. Please try again.');
+      alert(t('headmaster.errors.export_failed', 'Export failed. Please try again.'));
     }
   };
 
   if (loading && !stats) {
     return (
       <div className="flex items-center justify-center p-12 text-slate-800">
-        <RefreshCw className="w-6 h-6 animate-spin mr-2" /> Loading Dashboard Data...
+        <RefreshCw className="w-6 h-6 animate-spin mr-2" /> {t('headmaster.loading', 'Loading Dashboard Data...')}
       </div>
     );
   }
@@ -114,7 +116,7 @@ export default function HeadmasterDashboard() {
       <div className="flex flex-col items-center justify-center p-12 text-slate-800">
         <AlertCircle className="w-12 h-12 text-blue-600 mb-3" />
         <p>{error}</p>
-        <button onClick={fetchMetrics} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-semibold">Retry</button>
+        <button onClick={fetchMetrics} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-semibold">{t('headmaster.retry', 'Retry')}</button>
       </div>
     );
   }
@@ -148,36 +150,36 @@ export default function HeadmasterDashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">Attendance Rate</div>
+            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">{t('headmaster.kpi.attendance_rate', 'Attendance Rate')}</div>
             <div className="text-4xl font-bold text-slate-800 mt-1">{stats?.school_attendance_rate ?? 0}%</div>
-            <div className="text-[11px] text-slate-500 mt-1">7-day average (all classes)</div>
+            <div className="text-[11px] text-slate-500 mt-1">{t('headmaster.kpi.attendance_desc', '7-day average (all classes)')}</div>
           </div>
           <div className="p-3 bg-white text-slate-800 border border-slate-200 rounded-xl"><School className="w-7 h-7" /></div>
         </div>
 
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">Total Strength</div>
+            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">{t('headmaster.kpi.total_strength', 'Total Strength')}</div>
             <div className="text-4xl font-bold text-slate-800 mt-1">{stats?.total_students ?? 0}</div>
-            <div className="text-[11px] text-slate-500 mt-1">Enrolled across all classes</div>
+            <div className="text-[11px] text-slate-500 mt-1">{t('headmaster.kpi.strength_desc', 'Enrolled across all classes')}</div>
           </div>
           <div className="p-3 bg-white text-slate-800 border border-slate-200 rounded-xl"><Users className="w-7 h-7" /></div>
         </div>
 
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">Active Teachers</div>
+            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">{t('headmaster.kpi.active_teachers', 'Active Teachers')}</div>
             <div className="text-4xl font-bold text-slate-800 mt-1">{stats?.total_teachers ?? 0}</div>
-            <div className="text-[11px] text-slate-500 font-medium mt-1">All present today</div>
+            <div className="text-[11px] text-slate-500 font-medium mt-1">{t('headmaster.kpi.teachers_desc', 'All present today')}</div>
           </div>
           <div className="p-3 bg-white text-slate-800 border border-slate-200 rounded-xl"><UserCheck className="w-7 h-7" /></div>
         </div>
 
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">Critical Red Alerts</div>
+            <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">{t('headmaster.kpi.critical_alerts', 'Critical Red Alerts')}</div>
             <div className="text-4xl font-bold text-slate-800 mt-1">{riskData.RED ?? 0}</div>
-            <div className="text-[11px] text-slate-500 font-medium mt-1">Needs immediate action</div>
+            <div className="text-[11px] text-slate-500 font-medium mt-1">{t('headmaster.kpi.alerts_desc', 'Needs immediate action')}</div>
           </div>
           <div className="p-3 bg-white text-slate-800 border border-slate-200 rounded-xl"><ShieldAlert className="w-7 h-7" /></div>
         </div>
@@ -186,17 +188,17 @@ export default function HeadmasterDashboard() {
       {/* ── Risk Summary Row ──────────────────────────────────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'High Risk', count: riskData.RED || 0 },
-          { label: 'Medium Risk', count: riskData.ORANGE || 0 },
-          { label: 'Low Risk', count: riskData.YELLOW || 0 },
-          { label: 'Safe', count: riskData.SAFE || 0 },
+          { label: t('headmaster.risk.high', 'High Risk'), count: riskData.RED || 0 },
+          { label: t('headmaster.risk.medium', 'Medium Risk'), count: riskData.ORANGE || 0 },
+          { label: t('headmaster.risk.low', 'Low Risk'), count: riskData.YELLOW || 0 },
+          { label: t('headmaster.risk.safe', 'Safe'), count: riskData.SAFE || 0 },
         ].map((r) => (
           <div key={r.label} className="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 flex items-center justify-between">
             <div>
               <div className="text-xs font-semibold text-slate-800">{r.label}</div>
               <div className="text-2xl font-bold text-slate-800 mt-1">{r.count}</div>
               <div className="text-[10px] text-slate-500 mt-0.5">
-                {totalRisk > 0 ? Math.round((r.count / totalRisk) * 100) : 0}% of students
+                {totalRisk > 0 ? Math.round((r.count / totalRisk) * 100) : 0}{t('headmaster.risk.percentage', '% of students')}
               </div>
             </div>
           </div>
@@ -210,24 +212,24 @@ export default function HeadmasterDashboard() {
         <div className="bg-white border border-slate-100 shadow-sm rounded-2xl">
           <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
             <div>
-              <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                <UserCheck className="w-5 h-5 text-blue-600" /> Teachers on Leave
+              <h3 className="text-base font-bold text-slate-800">
+                {t('headmaster.teachers_leave.title', 'Teachers on Leave')}
               </h3>
-              <p className="text-xs text-slate-500 mt-0.5">Recent leave records</p>
+              <p className="text-xs text-slate-500 mt-0.5">{t('headmaster.teachers_leave.subtitle', 'Recent leave records')}</p>
             </div>
           </div>
           <div className="overflow-x-auto">
             {!teacherLeaves || teacherLeaves.length === 0 ? (
-              <div className="py-10 text-center text-sm text-slate-800">No teachers on leave found.</div>
+              <div className="py-10 text-center text-sm text-slate-800">{t('headmaster.teachers_leave.empty', 'No teachers on leave found.')}</div>
             ) : (
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="border-b border-slate-200 text-slate-800 uppercase tracking-wider text-xs bg-white">
-                    <th className="py-3 px-4 font-semibold">Teacher ID</th>
-                    <th className="py-3 px-4 font-semibold">Teacher Name</th>
-                    <th className="py-3 px-4 font-semibold">Date</th>
-                    <th className="py-3 px-4 font-semibold">Leave Type</th>
-                    <th className="py-3 px-4 font-semibold">Reason</th>
+                    <th className="py-3 px-4 font-semibold">{t('headmaster.teachers_leave.col_id', 'Teacher ID')}</th>
+                    <th className="py-3 px-4 font-semibold">{t('headmaster.teachers_leave.col_name', 'Teacher Name')}</th>
+                    <th className="py-3 px-4 font-semibold">{t('headmaster.teachers_leave.col_date', 'Date')}</th>
+                    <th className="py-3 px-4 font-semibold">{t('headmaster.teachers_leave.col_type', 'Leave Type')}</th>
+                    <th className="py-3 px-4 font-semibold">{t('headmaster.teachers_leave.col_reason', 'Reason')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-blue-100">
@@ -254,12 +256,11 @@ export default function HeadmasterDashboard() {
       {/* ── Class-wise Attendance ──────────────────────────────────────── */}
       <div className="bg-white border border-slate-100 shadow-sm rounded-2xl">
         <div className="px-5 py-4 border-b border-slate-200 flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-blue-500" />
-          <h3 className="text-base font-bold text-slate-800">Class-wise Attendance Rates</h3>
-          <span className="text-xs text-slate-800 ml-1">(last 7 school days)</span>
+          <h3 className="text-base font-bold text-slate-800">{t('headmaster.class_attendance.title', 'Class-wise Attendance Rates')}</h3>
+          <span className="text-xs text-slate-800 ml-1">{t('headmaster.class_attendance.subtitle', '(last 7 school days)')}</span>
         </div>
         {!stats?.class_attendance_comparison || stats.class_attendance_comparison.length === 0 ? (
-          <div className="py-8 text-center text-sm text-slate-800">No data available</div>
+          <div className="py-8 text-center text-sm text-slate-800">{t('headmaster.class_attendance.empty', 'No data available')}</div>
         ) : (
           <div className="p-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {stats.class_attendance_comparison.map((c) => {
@@ -269,7 +270,7 @@ export default function HeadmasterDashboard() {
                 <div key={c.class_name} className="p-4 bg-white border border-slate-200">
                   <div className="text-xs font-semibold text-slate-800 uppercase tracking-wide">{c.class_name}</div>
                   <div className="text-2xl font-bold text-slate-800 mt-1">{rate}%</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">{c.student_count} Students</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">{c.student_count} {t('headmaster.class_attendance.students', 'Students')}</div>
                   <div className="mt-3 h-1.5 bg-white rounded-full overflow-hidden">
                     <div className={`h-full ${barColor} rounded-full`} style={{ width: `${rate}%` }} />
                   </div>
@@ -283,21 +284,20 @@ export default function HeadmasterDashboard() {
       {/* ── Teacher Gate Check-In ──────────────────────────────────────── */}
       <div className="bg-white border border-slate-100 shadow-sm rounded-2xl">
         <div className="px-5 py-4 border-b border-slate-200 flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-indigo-500" />
-          <h3 className="text-base font-bold text-slate-800">Teacher Gate Check-In Status</h3>
+          <h3 className="text-base font-bold text-slate-800">{t('headmaster.teacher_gate.title', 'Teacher Gate Check-In Status')}</h3>
         </div>
         {!stats?.teacher_attendance_summary || stats.teacher_attendance_summary.length === 0 ? (
-          <div className="py-8 text-center text-sm text-slate-800">No teacher data available</div>
+          <div className="py-8 text-center text-sm text-slate-800">{t('headmaster.teacher_gate.empty', 'No teacher data available')}</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-slate-200 text-slate-800 uppercase tracking-wider text-xs bg-white">
                   <th className="py-3 px-4 font-semibold">#</th>
-                  <th className="py-3 px-4 font-semibold">Teacher Name</th>
-                  <th className="py-3 px-4 font-semibold">Assigned Class / Section</th>
-                  <th className="py-3 px-4 font-semibold">Check-In Time</th>
-                  <th className="py-3 px-4 font-semibold">Status</th>
+                  <th className="py-3 px-4 font-semibold">{t('headmaster.teacher_gate.col_name', 'Teacher Name')}</th>
+                  <th className="py-3 px-4 font-semibold">{t('headmaster.teacher_gate.col_class', 'Assigned Class / Section')}</th>
+                  <th className="py-3 px-4 font-semibold">{t('headmaster.teacher_gate.col_time', 'Check-In Time')}</th>
+                  <th className="py-3 px-4 font-semibold">{t('headmaster.teacher_gate.col_status', 'Status')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-blue-100">

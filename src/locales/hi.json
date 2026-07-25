@@ -1,0 +1,116 @@
+{
+  "navbar": {
+    "tagline": "सीखना कभी दिमाग को नहीं थकाता",
+    "notifications": "सूचनाएं",
+    "mark_all_read": "सभी को पढ़ा हुआ चिह्नित करें",
+    "no_notifications": "कोई सूचना नहीं",
+    "welcome": "स्वागत है",
+    "sign_out": "लॉग आउट"
+  },
+  "sidebar": {
+    "dashboard": "डैशबोर्ड",
+    "mark_attendance": "उपस्थिति दर्ज करें",
+    "attendance_records": "उपस्थिति रिकॉर्ड",
+    "student_management": "छात्र प्रबंधन",
+    "high_risk": "उच्च जोखिम वाले छात्र",
+    "counseling_roster": "काउंसलिंग रोस्टर",
+    "ai_analysis": "एआई विश्लेषण",
+    "attendance_graph": "उपस्थिति ग्राफ",
+    "notifications": "सूचनाएं",
+    "students": "छात्र",
+    "teachers": "शिक्षक",
+    "classes": "कक्षाएं और अनुभाग",
+    "attendance": "उपस्थिति",
+    "analytics": "एनालिटिक्स",
+    "profile": "प्रोफ़ाइल",
+    "logout": "लॉग आउट"
+  },
+  "headmaster": {
+    "errors": {
+      "fetch_failed": "डैशबोर्ड डेटा लाने में विफल।",
+      "batch_failed": "बैच मूल्यांकन विफल रहा।",
+      "export_failed": "निर्यात विफल। कृपया पुनः प्रयास करें।"
+    },
+    "loading": "डैशबोर्ड डेटा लोड हो रहा है...",
+    "retry": "पुनः प्रयास करें",
+    "kpi": {
+      "attendance_rate": "उपस्थिति दर",
+      "attendance_desc": "7-दिन का औसत (सभी कक्षाएं)",
+      "total_strength": "कुल संख्या",
+      "strength_desc": "सभी कक्षाओं में नामांकित",
+      "active_teachers": "सक्रिय शिक्षक",
+      "teachers_desc": "आज सभी उपस्थित हैं",
+      "critical_alerts": "गंभीर रेड अलर्ट",
+      "alerts_desc": "तत्काल कार्रवाई की आवश्यकता है"
+    },
+    "risk": {
+      "high": "उच्च जोखिम",
+      "medium": "मध्यम जोखिम",
+      "low": "कम जोखिम",
+      "safe": "सुरक्षित",
+      "percentage": "छात्रों का %"
+    },
+    "teachers_leave": {
+      "title": "छुट्टी पर शिक्षक",
+      "subtitle": "हालिया छुट्टी के रिकॉर्ड",
+      "empty": "छुट्टी पर कोई शिक्षक नहीं मिला।",
+      "col_id": "शिक्षक आईडी",
+      "col_name": "शिक्षक का नाम",
+      "col_date": "तारीख",
+      "col_type": "छुट्टी का प्रकार",
+      "col_reason": "कारण"
+    },
+    "class_attendance": {
+      "title": "कक्षा-वार उपस्थिति दरें",
+      "subtitle": "(पिछले 7 स्कूल के दिन)",
+      "empty": "कोई डेटा उपलब्ध नहीं",
+      "students": "छात्र"
+    },
+    "teacher_gate": {
+      "title": "टीचर गेट चेक-इन स्थिति",
+      "empty": "कोई शिक्षक डेटा उपलब्ध नहीं",
+      "col_name": "शिक्षक का नाम",
+      "col_class": "आवंटित कक्षा / अनुभाग",
+      "col_time": "चेक-इन समय",
+      "col_status": "स्थिति"
+    }
+  },
+  "teacher": {
+    "dashboard_title": "मेरी कक्षा का डैशबोर्ड",
+    "errors": {
+      "fetch_failed": "शिक्षक डैशबोर्ड डेटा लाने में विफल।"
+    },
+    "loading": "डैशबोर्ड लोड हो रहा है...",
+    "retry": "पुनः प्रयास करें",
+    "filters": {
+      "all_classes": "सभी कक्षाएं",
+      "all_sections": "सभी अनुभाग"
+    },
+    "kpi": {
+      "total_assigned": "कुल आवंटित",
+      "assigned_desc": "आपकी कक्षाओं में छात्र",
+      "present_today": "आज उपस्थित",
+      "present_desc": "दर:",
+      "absent_today": "आज अनुपस्थित",
+      "absent_desc": "कुल अनुपस्थित",
+      "high_risk": "उच्च जोखिम",
+      "high_risk_desc": "ध्यान देने योग्य छात्र"
+    },
+    "absent_table": {
+      "title": "आज अनुपस्थित",
+      "subtitle": "आपके आवंटित अनुभागों से अनुपस्थित छात्र",
+      "empty": "आज कोई छात्र अनुपस्थित नहीं है।",
+      "col_roll": "रोल नं",
+      "col_name": "छात्र का नाम",
+      "col_risk": "जोखिम स्तर",
+      "col_phone": "माता-पिता का फोन"
+    },
+    "high_risk_table": {
+      "title": "उच्च जोखिम वाले छात्र",
+      "subtitle": "आपकी कक्षाओं में शीर्ष प्राथमिकता वाले छात्र",
+      "empty": "कोई उच्च जोखिम वाला छात्र नहीं मिला।",
+      "score": "स्कोर",
+      "roll": "रोल"
+    }
+  }
+}

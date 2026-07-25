@@ -143,13 +143,12 @@ export default function AiAnalysis() {
       {/* ── Page Header ─────────────────────────────────────────────────── */}
       <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <h1 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            <ShieldAlert className="w-6 h-6 text-blue-600" />
+          <h1 className="text-xl font-bold text-slate-800">
             AI Risk Analysis &amp; Predictions
           </h1>
           {lastEvaluatedAt && (
             <div className="text-xs font-semibold text-slate-500 bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
-              Last Updated: {new Date(lastEvaluatedAt).toLocaleString()}
+              Last Updated: {new Date(lastEvaluatedAt.endsWith('Z') ? lastEvaluatedAt : lastEvaluatedAt + 'Z').toLocaleString()}
             </div>
           )}
         </div>
